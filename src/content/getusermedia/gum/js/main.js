@@ -51,6 +51,10 @@ async function init(e) {
     video.setAttribute('autoplay', '');
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', true);
+    if (navigator.mediaDevices == undefined) {
+      errorElement.innerHTML += '<p> navigator.mediaDevices is undefined :( </p>';
+      return;
+    }
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
     handleSuccess(stream);
     e.target.disabled = true;
