@@ -16,11 +16,6 @@ var constraints = {
 }
 
 function handleSuccess(stream) {
-  const video = document.querySelector('video');
-  video.setAttribute('autoplay', '');
-  video.setAttribute('muted', '');
-  video.setAttribute('playsinline', true);
-
   const videoTracks = stream.getVideoTracks();
   console.log('Got stream with constraints:', constraints);
   console.log(`Using video device: ${videoTracks[0].label}`);
@@ -43,6 +38,7 @@ function handleError(error) {
 function errorMsg(msg, error) {
   const errorElement = document.querySelector('#errorMsg');
   errorElement.innerHTML += `<p>${msg}</p>`;
+  console.log('Error string: ' + JSON.stringify(error));
   if (typeof error !== 'undefined') {
     console.error(error);
   }
@@ -50,6 +46,10 @@ function errorMsg(msg, error) {
 
 async function init(e) {
   try {
+    const video = document.querySelector('video');
+    video.setAttribute('autoplay', '');
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', true);
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
     handleSuccess(stream);
     e.target.disabled = true;
