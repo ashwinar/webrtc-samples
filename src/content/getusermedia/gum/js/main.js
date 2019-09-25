@@ -38,8 +38,8 @@ function handleError(error) {
 
 function errorMsg(msg, error) {
   const errorElement = document.querySelector('#errorMsg');
-  errorElement.innerHTML += `<p>${msg}</p>`;
-  console.log('Error string: ' + JSON.stringify(error));
+  const errStr = JSON.stringify(error);
+  errorElement.innerHTML += `<p>${msg}</p><br><p>${errStr}</p>`;
   if (typeof error !== 'undefined') {
     console.error(error);
   }
