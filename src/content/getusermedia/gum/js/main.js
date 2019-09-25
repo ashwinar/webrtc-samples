@@ -52,6 +52,7 @@ async function init(e) {
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', true);
     if (navigator.mediaDevices == undefined) {
+      const errorElement = document.querySelector('#errorMsg');
       errorElement.innerHTML += '<p> navigator.mediaDevices is undefined :( </p>';
       return;
     }
