@@ -19,7 +19,7 @@ function handleSuccess(stream) {
   const video = document.querySelector('video');
   video.setAttribute('autoplay', '');
   video.setAttribute('muted', '');
-  video.setAttribute('playsinline', '');
+  video.setAttribute('playsinline', true);
 
   const videoTracks = stream.getVideoTracks();
   console.log('Got stream with constraints:', constraints);
