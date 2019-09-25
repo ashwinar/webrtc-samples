@@ -8,17 +8,23 @@
 'use strict';
 
 // Put variables in global scope to make them available to the browser console.
-const constraints = window.constraints = {
+var constraints = {
   audio: false,
-  video: true
-};
+  video: {
+      facingMode: 'user'
+  }
+}
 
 function handleSuccess(stream) {
   const video = document.querySelector('video');
+  video.setAttribute('autoplay', '');
+  video.setAttribute('muted', '');
+  video.setAttribute('playsinline', '');
+
   const videoTracks = stream.getVideoTracks();
   console.log('Got stream with constraints:', constraints);
   console.log(`Using video device: ${videoTracks[0].label}`);
-  window.stream = stream; // make variable available to browser console
+  // window.stream = stream; // make variable available to browser console
   video.srcObject = stream;
 }
 
