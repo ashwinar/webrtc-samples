@@ -53,7 +53,8 @@ async function init(e) {
     video.setAttribute('playsinline', true);
     if (navigator.mediaDevices == undefined) {
       const errorElement = document.querySelector('#errorMsg');
-      errorElement.innerHTML += '<p> navigator.mediaDevices is undefined :( </p>';
+      const isSecure = window.isSecureContext;
+      errorElement.innerHTML += `<p> navigator.mediaDevices is undefined & window.isSecureContext is ${isSecure}</p>`;
       return;
     }
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
